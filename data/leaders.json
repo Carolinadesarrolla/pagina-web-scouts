@@ -13,6 +13,16 @@
     "photo": "/líderes/Frank.jpeg"
   },
   {
+    "id": "leader-paddy",
+    "name": "Paddy",
+    "role": "leader",
+    "title": "Scout Leader",
+    "section": "sea_scouts",
+    "bio": "///",
+    "certifications": [],
+    "photo": "/líderes/paddy.jpeg"
+  },
+  {
     "id": "leader-fiachra",
     "name": "Fiachra",
     "role": "leader",
@@ -49,7 +59,7 @@
       "Scout Leader",
       "Outdoor Skills Specialist"
     ],
-    "photo": ""
+    "photo": "/líderes/josh.jpeg"
   },
   {
     "id": "pl-taidgh-malone",
@@ -99,7 +109,7 @@
     "section": "sea_scouts",
     "patrolName": "Otter Patrol",
     "bio": "Been here for a decade. Ace of Nucks.",
-    "photo": "",
+    "photo": "/líderes/mateusz.jpeg",
     "certifications": [
       "10 Years Service",
       "Assistant Patrol Leader"
