@@ -1,0 +1,288 @@
+{
+  "albums": [
+    {
+      "id": "lg",
+      "folderName": "LG",
+      "title": "Our trip to Clogherhead lifeguard station",
+      "category": "group",
+      "description": "Scout visit to Clogherhead Lifeguard and Coast Guard Station learning coastal life saving.",
+      "coverPhoto": "/LG/LG_1.jpg"
+    },
+    {
+      "id": "investiture",
+      "folderName": "investiture",
+      "title": "Investiture",
+      "category": "investiture",
+      "description": "Scout promises, badge presentations, and group flag parade.",
+      "coverPhoto": "/investiture/Investiture_1.jpeg"
+    },
+    {
+      "id": "camp 1",
+      "folderName": "camp 1",
+      "title": "Camping",
+      "category": "camp",
+      "description": "Outdoor camping, patrol tent setup, and campfire cooking.",
+      "coverPhoto": "/camp 1/Camp_1.jpg"
+    },
+    {
+      "id": "hike 1",
+      "folderName": "hike 1",
+      "title": "Hiking",
+      "category": "hike",
+      "description": "Exploring Cooley Mountains and practicing map & compass skills.",
+      "coverPhoto": "/hike 1/Hike_1.jpg"
+    },
+    {
+      "id": "water",
+      "folderName": "water",
+      "title": "Water",
+      "category": "water",
+      "description": "Kayaking, sailing regattas, and rowing practice in Dundalk Bay.",
+      "coverPhoto": "/water/Water_1.jpg"
+    },
+    {
+      "id": "líderes",
+      "folderName": "líderes",
+      "title": "Leaders Showcase",
+      "category": "leaders",
+      "description": "Portraits of our leaders and patrol leaders.",
+      "coverPhoto": "/líderes/test.jpg"
+    }
+  ],
+  "photos": [
+    {
+      "id": "investiture-1",
+      "albumId": "investiture",
+      "folder": "investiture",
+      "src": "/investiture/Investiture_1.jpeg",
+      "title": "Scout Promise Ceremony",
+      "category": "investiture",
+      "tags": ["promise", "investiture", "den"]
+    },
+    {
+      "id": "investiture-2",
+      "albumId": "investiture",
+      "folder": "investiture",
+      "src": "/investiture/Investiture_2.jpeg",
+      "title": "Badge Presentation",
+      "category": "investiture",
+      "tags": ["badges", "awards", "ceremony"]
+    },
+    {
+      "id": "investiture-3",
+      "albumId": "investiture",
+      "folder": "investiture",
+      "src": "/investiture/Investiture_3.jpeg",
+      "title": "Neckerchief Investiture",
+      "category": "investiture",
+      "tags": ["neckerchief", "woggle", "scout"]
+    },
+    {
+      "id": "investiture-4",
+      "albumId": "investiture",
+      "folder": "investiture",
+      "src": "/investiture/Investiture_4.jpeg",
+      "title": "Colour Party Flag Assembly",
+      "category": "investiture",
+      "tags": ["flags", "colour party", "tradition"]
+    },
+    {
+      "id": "investiture-5",
+      "albumId": "investiture",
+      "folder": "investiture",
+      "src": "/investiture/Investiture_5.jpeg",
+      "title": "Full Group Investiture Photo",
+      "category": "investiture",
+      "tags": ["group photo", "members", "2nd louth"]
+    },
+    {
+      "id": "camp-1",
+      "albumId": "camp 1",
+      "folder": "camp 1",
+      "src": "/camp 1/Camp_1.jpg",
+      "title": "Patrol Tent Setup",
+      "category": "camp",
+      "tags": ["camping", "tents", "cooley"]
+    },
+    {
+      "id": "camp-2",
+      "albumId": "camp 1",
+      "folder": "camp 1",
+      "src": "/camp 1/Camp_2.jpg",
+      "title": "Campfire Dinner & Cooking",
+      "category": "camp",
+      "tags": ["campfire", "cooking", "scout life"]
+    },
+    {
+      "id": "camp-3",
+      "albumId": "camp 1",
+      "folder": "camp 1",
+      "src": "/camp 1/Camp_3.jpg",
+      "title": "Morning Inspection",
+      "category": "camp",
+      "tags": ["inspection", "uniform", "morning"]
+    },
+    {
+      "id": "hike-1",
+      "albumId": "hike 1",
+      "folder": "hike 1",
+      "src": "/hike 1/Hike_1.jpg",
+      "title": "Slieve Foye Mountain Trail",
+      "category": "hike",
+      "tags": ["hike", "mountains", "cooley"]
+    },
+    {
+      "id": "hike-2",
+      "albumId": "hike 1",
+      "folder": "hike 1",
+      "src": "/hike 1/Hike_2.jpg",
+      "title": "Map & Compass Navigation",
+      "category": "hike",
+      "tags": ["navigation", "compass", "map"]
+    },
+    {
+      "id": "hike-3",
+      "albumId": "hike 1",
+      "folder": "hike 1",
+      "src": "/hike 1/Hike_3.jpg",
+      "title": "Ridge Trail Checkpoint",
+      "category": "hike",
+      "tags": ["trail", "checkpoint", "ridge"]
+    },
+    {
+      "id": "hike-4",
+      "albumId": "hike 1",
+      "folder": "hike 1",
+      "src": "/hike 1/Hike_4.jpg",
+      "title": "Summit Group Photo",
+      "category": "hike",
+      "tags": ["summit", "group photo", "scouts"]
+    },
+    {
+      "id": "hike-5",
+      "albumId": "hike 1",
+      "folder": "hike 1",
+      "src": "/hike 1/Hike_5.jpg",
+      "title": "Descent & Sunset View",
+      "category": "hike",
+      "tags": ["sunset", "descent", "scenery"]
+    },
+    {
+      "id": "water-1",
+      "albumId": "water",
+      "folder": "water",
+      "src": "/water/Water_1.jpg",
+      "title": "Sailing Regatta in Dundalk Bay",
+      "category": "water",
+      "tags": ["sailing", "dundalk bay", "water sports"]
+    },
+    {
+      "id": "water-2",
+      "albumId": "water",
+      "folder": "water",
+      "src": "/water/Water_2.jpg",
+      "title": "Patrol Kayaking Session",
+      "category": "water",
+      "tags": ["kayak", "sea scouts", "blackrock"]
+    },
+    {
+      "id": "water-3",
+      "albumId": "water",
+      "folder": "water",
+      "src": "/water/Water_3.jpg",
+      "title": "Rowing Practice & Safety",
+      "category": "water",
+      "tags": ["rowing", "boating", "safety"]
+    },
+    {
+      "id": "lg-1",
+      "albumId": "LG",
+      "folder": "LG",
+      "src": "/LG/LG_1.jpg",
+      "title": "Clogherhead Lifeguard Station Tour",
+      "category": "group",
+      "tags": ["clogherhead", "lifeguard", "coastguard"]
+    },
+    {
+      "id": "lg-2",
+      "albumId": "LG",
+      "folder": "LG",
+      "src": "/LG/LG_2.jpg",
+      "title": "Lifejacket Safety Fitting",
+      "category": "group",
+      "tags": ["lifejacket", "safety", "station"]
+    },
+    {
+      "id": "lg-3",
+      "albumId": "LG",
+      "folder": "LG",
+      "src": "/LG/LG_3.jpg",
+      "title": "Coastguard Equipment Workshop",
+      "category": "group",
+      "tags": ["coastguard", "equipment", "workshop"]
+    },
+    {
+      "id": "lg-4",
+      "albumId": "LG",
+      "folder": "LG",
+      "src": "/LG/LG_4.jpg",
+      "title": "Coastguard Rescue Vehicle",
+      "category": "group",
+      "tags": ["rescue", "vehicle", "clogherhead"]
+    },
+    {
+      "id": "lg-5",
+      "albumId": "LG",
+      "folder": "LG",
+      "src": "/LG/LG_5.jpg",
+      "title": "Water Rescue Demonstration",
+      "category": "group",
+      "tags": ["water rescue", "demonstration", "sea"]
+    },
+    {
+      "id": "lg-6",
+      "albumId": "LG",
+      "folder": "LG",
+      "src": "/LG/LG_6.jpg",
+      "title": "Station Briefing & Q&A",
+      "category": "group",
+      "tags": ["briefing", "station", "learning"]
+    },
+    {
+      "id": "lg-7",
+      "albumId": "LG",
+      "folder": "LG",
+      "src": "/LG/LG_7.jpg",
+      "title": "Coastguard Team Photo",
+      "category": "group",
+      "tags": ["coastguard", "group photo", "clogherhead"]
+    },
+    {
+      "id": "lg-8",
+      "albumId": "LG",
+      "folder": "LG",
+      "src": "/LG/LG_8.jpg",
+      "title": "Lifeboat Equipment Inspection",
+      "category": "group",
+      "tags": ["lifeboat", "inspection", "safety"]
+    },
+    {
+      "id": "lg-9",
+      "albumId": "LG",
+      "folder": "LG",
+      "src": "/LG/LG_9.jpg",
+      "title": "Group Photo at Clogherhead",
+      "category": "group",
+      "tags": ["group photo", "clogherhead", "scouts"]
+    },
+    {
+      "id": "lideres-1",
+      "albumId": "líderes",
+      "folder": "líderes",
+      "src": "/líderes/test.jpg",
+      "title": "Taidgh Malone - Patrol Leader",
+      "category": "leaders",
+      "tags": ["patrol leader", "taidgh malone", "leader"]
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+[
+  {
+    "id": "leader-frank",
+    "name": "Frank",
+    "role": "leader",
+    "title": "Main Leader of Scouts (Skipper)",
+    "section": "sea_scouts",
+    "bio": "Alias Skipper. Main Leader of Scouts. Likes trains.",
+    "certifications": [
+      "Skipper",
+      "Sailing Instructor"
+    ],
+    "photo": "/líderes/Frank.jpeg"
+  },
+  {
+    "id": "leader-fiachra",
+    "name": "Fiachra",
+    "role": "leader",
+    "title": "Scout Leader",
+    "section": "sea_scouts",
+    "bio": "Funny. Calls scouts a 'democratic dictatorship'.",
+    "certifications": [
+      "Scout Leader",
+      "Safety Officer"
+    ],
+    "photo": ""
+  },
+  {
+    "id": "leader-aela",
+    "name": "Aela",
+    "role": "leader",
+    "title": "Scout Leader",
+    "section": "sea_scouts",
+    "bio": "Very organised.",
+    "certifications": [
+      "Scout Leader",
+      "Event Coordinator"
+    ],
+    "photo": ""
+  },
+  {
+    "id": "leader-josh",
+    "name": "Josh",
+    "role": "leader",
+    "title": "Scout Leader",
+    "section": "sea_scouts",
+    "bio": "Good sense of humour. Has a lot of random skills.",
+    "certifications": [
+      "Scout Leader",
+      "Outdoor Skills Specialist"
+    ],
+    "photo": ""
+  },
+  {
+    "id": "pl-taidgh-malone",
+    "name": "Taidgh Malone",
+    "role": "patrol_leader",
+    "title": "Patrol Leader (PL)",
+    "section": "sea_scouts",
+    "patrolName": "Otter Patrol",
+    "bio": "Abuses his power. Drinks a lot of tea (7+ cups a day). Great craic.",
+    "photo": "/líderes/test.jpg",
+    "certifications": [
+      "Patrol Leadership Warrant",
+      "Tea Master"
+    ]
+  },
+  {
+    "id": "pl-sophia",
+    "name": "Sophia",
+    "role": "patrol_leader",
+    "title": "Patrol Leader (PL)",
+    "section": "sea_scouts",
+    "patrolName": "Curlew Patrol",
+    "bio": "Loves chaos.",
+    "photo": "",
+    "certifications": [
+      "Patrol Leadership Warrant"
+    ]
+  },
+  {
+    "id": "apl-alannah",
+    "name": "Alannah",
+    "role": "assistant_patrol_leader",
+    "title": "Assistant Patrol Leader (APL)",
+    "section": "sea_scouts",
+    "patrolName": "Curlew Patrol",
+    "bio": "50% chance that she will not be here. Very kind hearted.",
+    "photo": "",
+    "certifications": [
+      "Assistant Patrol Leader"
+    ]
+  },
+  {
+    "id": "apl-mateusz",
+    "name": "Mateusz",
+    "role": "assistant_patrol_leader",
+    "title": "Assistant Patrol Leader (APL)",
+    "section": "sea_scouts",
+    "patrolName": "Otter Patrol",
+    "bio": "Been here for a decade. Ace of Nucks.",
+    "photo": "",
+    "certifications": [
+      "10 Years Service",
+      "Assistant Patrol Leader"
+    ]
+  }
+]
