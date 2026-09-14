@@ -18,13 +18,13 @@ import {
   Anchor
 } from "@/components/Icons";
 
-const languages: { code: SupportedLanguage; label: string; flagSvg: string; }[] = [
+const languages: { code: SupportedLanguage; label: string; flagSvg: string; displayCode?: string; }[] = [
   { code: "en", label: "English", flagSvg: "/gb.svg" },
   { code: "ga", label: "Gaeilge", flagSvg: "/ie.svg" },
   { code: "es", label: "Español", flagSvg: "/es.svg" },
   { code: "pl", label: "Polski", flagSvg: "/pl.svg" },
   { code: "de", label: "Deutsch", flagSvg: "/de.svg" },
-  { code: "ru", label: "Русский", flagSvg: "/ru.svg" },
+  { code: "ru", label: "Русский", flagSvg: "/ru.svg", displayCode: "РУ" },
 ];
 
 const colorThemes: { id: ColorTheme; labelKey: string; previewHex: string; }[] = [
@@ -54,6 +54,9 @@ export const Navbar: React.FC = () => {
     { href: "/contact", label: t("navContact") },
   ];
 
+  const activeLangObj = languages.find((l) => l.code === language);
+  const currentLangCode = activeLangObj?.displayCode || language;
+
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-[var(--surface-container-low)]/90 border-b border-[var(--outline-variant)] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -80,8 +83,8 @@ export const Navbar: React.FC = () => {
           </div>
         </Link>
 
-        {/* Desktop Nav Items */}
-        <nav className="hidden md:flex items-center gap-1">
+        {/* Desktop Nav Items (visible >= 1080px) */}
+        <nav className="hidden min-[1080px]:flex items-center gap-1">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -89,8 +92,8 @@ export const Navbar: React.FC = () => {
                 key={item.href}
                 href={item.href}
                 className={`px-4 py-2 rounded-[var(--md-shape-m)] text-sm font-medium transition-all ${isActive
-                    ? "bg-[var(--primary-container)] text-[var(--on-primary-container)] font-semibold"
-                    : "text-[var(--on-surface-variant)] hover:bg-[var(--surface-container-high)] hover:text-[var(--on-surface)]"
+                  ? "bg-[var(--primary-container)] text-[var(--on-primary-container)] font-semibold"
+                  : "text-[var(--on-surface-variant)] hover:bg-[var(--surface-container-high)] hover:text-[var(--on-surface)]"
                   }`}
               >
                 {item.label}
@@ -99,7 +102,7 @@ export const Navbar: React.FC = () => {
           })}
         </nav>
 
-        {/* Right Controls: Language Selector, Theme Picker, Light/Dark Switch */}
+        {/* Right Controls: Language Selector (always visible), Theme Picker & Light/Dark Switch (Desktop only in top bar >= 1050px) */}
         <div className="flex items-center gap-1 sm:gap-2">
 
           {/* Language Selector Dropdown */}
@@ -112,19 +115,16 @@ export const Navbar: React.FC = () => {
               className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full border border-[var(--outline-variant)] text-xs font-semibold text-[var(--on-surface)] hover:bg-[var(--surface-container-high)] transition-all shrink-0 min-w-0"
               aria-label={t("selectLanguage")}
             >
-              {(() => {
-                const activeLang = languages.find((l) => l.code === language);
-                return activeLang ? (
-                  <img
-                    src={activeLang.flagSvg}
-                    alt={`${activeLang.label} flag`}
-                    className="w-4 h-3 object-cover rounded-[2px] border border-black/10 shrink-0"
-                  />
-                ) : (
-                  <Globe size={16} className="text-[var(--primary)] shrink-0" />
-                );
-              })()}
-              <span className="uppercase font-bold text-[11px] sm:text-xs tracking-wider">{language}</span>
+              {activeLangObj ? (
+                <img
+                  src={activeLangObj.flagSvg}
+                  alt={`${activeLangObj.label} flag`}
+                  className="w-4 h-3 object-cover rounded-[2px] border border-black/10 shrink-0"
+                />
+              ) : (
+                <Globe size={16} className="text-[var(--primary)] shrink-0" />
+              )}
+              <span className="uppercase font-bold text-[11px] sm:text-xs tracking-wider">{currentLangCode}</span>
             </button>
 
             {langMenuOpen && (
@@ -140,8 +140,8 @@ export const Navbar: React.FC = () => {
                       setLangMenuOpen(false);
                     }}
                     className={`w-full flex items-center justify-between px-3 py-2 rounded-[var(--md-shape-m)] text-sm font-medium text-left transition-colors ${language === lang.code
-                        ? "bg-[var(--primary-container)] text-[var(--on-primary-container)] font-bold"
-                        : "hover:bg-[var(--surface-container-highest)] text-[var(--on-surface)]"
+                      ? "bg-[var(--primary-container)] text-[var(--on-primary-container)] font-bold"
+                      : "hover:bg-[var(--surface-container-highest)] text-[var(--on-surface)]"
                       }`}
                   >
                     <span className="flex items-center gap-2.5">
@@ -159,8 +159,8 @@ export const Navbar: React.FC = () => {
             )}
           </div>
 
-          {/* Color Theme Selector Menu */}
-          <div className="relative">
+          {/* Color Theme Selector Menu (Hidden on mobile < 1050px) */}
+          <div className="relative hidden min-[1080px]:block">
             <button
               onClick={() => {
                 setThemeMenuOpen(!themeMenuOpen);
@@ -187,8 +187,8 @@ export const Navbar: React.FC = () => {
                         setThemeMenuOpen(false);
                       }}
                       className={`w-full flex items-center justify-between px-3 py-2 rounded-[var(--md-shape-m)] text-xs font-semibold text-left transition-colors ${theme === item.id
-                          ? "bg-[var(--primary-container)] text-[var(--on-primary-container)]"
-                          : "hover:bg-[var(--surface-container-highest)] text-[var(--on-surface)]"
+                        ? "bg-[var(--primary-container)] text-[var(--on-primary-container)]"
+                        : "hover:bg-[var(--surface-container-highest)] text-[var(--on-surface)]"
                         }`}
                     >
                       <span className="flex items-center gap-2.5">
@@ -206,10 +206,10 @@ export const Navbar: React.FC = () => {
             )}
           </div>
 
-          {/* Light / Dark Mode Toggle Button */}
+          {/* Light / Dark Mode Toggle Button (Hidden on mobile < 1050px) */}
           <button
             onClick={toggleMode}
-            className="p-1.5 sm:p-2 rounded-full border border-[var(--outline-variant)] text-[var(--on-surface)] hover:bg-[var(--surface-container-high)] transition-all shrink-0"
+            className="hidden min-[1080px]:flex p-1.5 sm:p-2 rounded-full border border-[var(--outline-variant)] text-[var(--on-surface)] hover:bg-[var(--surface-container-high)] transition-all shrink-0"
             aria-label={t("toggleDarkMode")}
             title={t("toggleDarkMode")}
           >
@@ -220,10 +220,10 @@ export const Navbar: React.FC = () => {
             )}
           </button>
 
-          {/* Mobile Hamburger Menu Toggle */}
+          {/* Mobile Hamburger Menu Toggle (Visible < 1050px) */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-1.5 sm:p-2 rounded-full text-[var(--on-surface)] hover:bg-[var(--surface-container-high)] transition-all shrink-0"
+            className="min-[1080px]:hidden p-1.5 sm:p-2 rounded-full text-[var(--on-surface)] hover:bg-[var(--surface-container-high)] transition-all shrink-0"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -231,9 +231,9 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Mobile Navigation Drawer (Visible < 1050px) */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[var(--outline-variant)] bg-[var(--surface-container)] p-4 space-y-4 animate-in slide-in-from-top-4 shadow-2xl">
+        <div className="min-[1080px]:hidden border-t border-[var(--outline-variant)] bg-[var(--surface-container)] p-4 space-y-4 animate-in slide-in-from-top-4 shadow-2xl">
           <nav className="flex flex-col gap-1">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
@@ -243,8 +243,8 @@ export const Navbar: React.FC = () => {
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`px-4 py-3 rounded-[var(--md-shape-l)] text-base font-semibold transition-colors flex items-center justify-between ${isActive
-                      ? "bg-[var(--primary-container)] text-[var(--on-primary-container)] font-bold shadow-xs"
-                      : "text-[var(--on-surface-variant)] hover:bg-[var(--surface-container-high)]"
+                    ? "bg-[var(--primary-container)] text-[var(--on-primary-container)] font-bold shadow-xs"
+                    : "text-[var(--on-surface-variant)] hover:bg-[var(--surface-container-high)]"
                     }`}
                 >
                   <span>{item.label}</span>
@@ -254,36 +254,33 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* Quick Language & Theme Controls inside Mobile Drawer */}
-          <div className="pt-3 border-t border-[var(--outline-variant)] space-y-3">
-            <div>
-              <span className="block text-[10px] font-bold uppercase tracking-wider text-[var(--on-surface-variant)] mb-2 px-1">
-                {t("selectLanguage")}
+          {/* Theme & Color Controls inside Mobile Drawer */}
+          <div className="pt-3 border-t border-[var(--outline-variant)] space-y-4">
+            {/* Light / Dark Mode Toggle */}
+            <div className="flex items-center justify-between px-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-[var(--on-surface-variant)]">
+                {t("toggleDarkMode")}
               </span>
-              <div className="grid grid-cols-3 gap-1.5">
-                {languages.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => {
-                      setLanguage(lang.code);
-                      setMobileMenuOpen(false);
-                    }}
-                    className={`flex items-center justify-center gap-2 p-2 rounded-[var(--md-shape-m)] text-xs font-semibold border transition-all ${language === lang.code
-                        ? "bg-[var(--primary-container)] text-[var(--on-primary-container)] border-[var(--primary)] font-bold"
-                        : "bg-[var(--surface-container-high)] text-[var(--on-surface)] border-transparent"
-                      }`}
-                  >
-                    <img
-                      src={lang.flagSvg}
-                      alt={`${lang.label} flag`}
-                      className="w-4 h-3 object-cover rounded-[2px] border border-black/15 shrink-0"
-                    />
-                    <span className="uppercase text-[11px]">{lang.code}</span>
-                  </button>
-                ))}
-              </div>
+              <button
+                onClick={toggleMode}
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--outline-variant)] bg-[var(--surface-container-high)] text-xs font-semibold text-[var(--on-surface)] hover:bg-[var(--surface-container-highest)] transition-all"
+                aria-label={t("toggleDarkMode")}
+              >
+                {mode === "light" ? (
+                  <>
+                    <Moon size={16} className="text-[var(--primary)]" />
+                    <span>Dark</span>
+                  </>
+                ) : (
+                  <>
+                    <Sun size={16} className="text-amber-400" />
+                    <span>Light</span>
+                  </>
+                )}
+              </button>
             </div>
 
+            {/* Color Themes Grid */}
             <div>
               <span className="block text-[10px] font-bold uppercase tracking-wider text-[var(--on-surface-variant)] mb-2 px-1">
                 {t("selectTheme")}
@@ -296,8 +293,8 @@ export const Navbar: React.FC = () => {
                       setTheme(item.id);
                     }}
                     className={`flex items-center gap-2 px-2.5 py-1.5 rounded-[var(--md-shape-m)] text-[11px] font-medium border transition-colors ${theme === item.id
-                        ? "bg-[var(--primary-container)] text-[var(--on-primary-container)] border-[var(--primary)] font-bold"
-                        : "bg-[var(--surface-container-high)] text-[var(--on-surface)] border-transparent"
+                      ? "bg-[var(--primary-container)] text-[var(--on-primary-container)] border-[var(--primary)] font-bold"
+                      : "bg-[var(--surface-container-high)] text-[var(--on-surface)] border-transparent"
                       }`}
                   >
                     <span
