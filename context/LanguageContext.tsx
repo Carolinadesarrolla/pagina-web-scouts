@@ -6,7 +6,7 @@ import { translations, SupportedLanguage, TranslationDictionary } from "@/data/t
 interface LanguageContextType {
   language: SupportedLanguage;
   setLanguage: (lang: SupportedLanguage) => void;
-  t: (key: keyof TranslationDictionary) => string;
+  t: (key: keyof TranslationDictionary | string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -44,9 +44,10 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const t = (key: keyof TranslationDictionary): string => {
+  const t = (key: keyof TranslationDictionary | string): string => {
     const activeDict = translations[language] || translations.en;
-    return activeDict[key] || translations.en[key] || String(key);
+    const typedKey = key as keyof TranslationDictionary;
+    return activeDict[typedKey] || translations.en[typedKey] || String(key);
   };
 
   return (

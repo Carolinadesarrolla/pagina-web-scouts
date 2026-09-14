@@ -1,17 +1,32 @@
 [
   {
     "id": "backwoods-day-2026",
-    "titleKey": "",
-    "descriptionKey": "",
-    "startDate": "",
-    "location": "",
-    "type": "",
-    "status": "",
-    "sections": [],
-    "plan": [],
-    "route": "",
-    "gearList": [],
-    "contactPerson": "",
-    "notes": ""
+    "titleKey": "event1Title",
+    "descriptionKey": "event1Desc",
+    "startDate": "2026-05-16T09:00:00.000Z",
+    "location": "event1Loc",
+    "type": "camp",
+    "status": "planning",
+    "sections": [
+      "scouts",
+      "venturers"
+    ],
+    "plan": [
+      "event1Plan1",
+      "event1Plan2",
+      "event1Plan3",
+      "event1Plan4",
+      "event1Plan5"
+    ],
+    "route": "event1Route",
+    "gearList": [
+      "event1Gear1",
+      "event1Gear2",
+      "event1Gear3",
+      "event1Gear4",
+      "event1Gear5"
+    ],
+    "contactPerson": "eventContactSkipperFrank",
+    "notes": "event1Notes"
   }
 ]

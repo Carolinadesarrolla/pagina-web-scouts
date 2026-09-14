@@ -26,6 +26,7 @@ export interface TranslationDictionary {
   heroBadge: string;
   heroCtaPrimary: string;
   heroCtaSecondary: string;
+  heroCtaContact: string;
 
   aboutTitle: string;
   aboutSubtitle: string;
@@ -88,6 +89,9 @@ export interface TranslationDictionary {
   statusPlanning: string;
   statusConfirmed: string;
   dateTBD: string;
+  locationTBD: string;
+  untitledEvent: string;
+  noDescriptionAvailable: string;
   planningNotice: string;
   searchEventsPlaceholder: string;
   noEventsFound: string;
@@ -346,6 +350,7 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     heroBadge: "Dundalk Bay & Blackrock Sea Scouting",
     heroCtaPrimary: "Explore Events",
     heroCtaSecondary: "Our Leaders & Patrols",
+    heroCtaContact: "Contact Us",
 
     aboutTitle: "Welcome to Our Sea Scout Den",
     aboutSubtitle: "Empowering youth through watercraft skills, outdoorsmanship, and lifelong friendship.",
@@ -407,6 +412,9 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     statusPlanning: "In Planning Phase",
     statusConfirmed: "Confirmed Event",
     dateTBD: "Date To Be Decided",
+    locationTBD: "Location To Be Decided",
+    untitledEvent: "Scout Event",
+    noDescriptionAvailable: "Event details will be updated shortly.",
     planningNotice: "This event is currently being planned. Final dates, route, and gear requirements will be published soon.",
     searchEventsPlaceholder: "Search event title or location...",
     noEventsFound: "No events match the selected criteria.",
@@ -658,10 +666,11 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     heroBadge: "Scótáil Mara Chuan Dhún Dealgan",
     heroCtaPrimary: "Féach ar Imeachtaí",
     heroCtaSecondary: "Ár gCeannairí",
+    heroCtaContact: "Teagmháil Linn",
 
     aboutTitle: "Fáilte go dtí ár nDún Scótaí Mara",
     aboutSubtitle: "Nurtú óige trí scileanna uisce, campáil agus cairdeas saoil.",
-    aboutDesc: "Lonnaithe i sráidbhaile cois farraige Charraig Chocháin, Co. Lú, nascann ár n-amharc-ghrúpa luachanna traidisiúnta scótála le teagasc muirí.",
+    aboutDesc: "Lonnaithe i sráidbhaile cois farraige Chreagacha Dubha, Co. Lú, nascann ár n-amharc-ghrúpa luachanna traidisiúnta scótála le teagasc muirí.",
 
     pillarsTitle: "Piléir na Scótála Mara",
     pillar1Title: "Sábháilteacht Uisce & Nascleanúint",
@@ -719,7 +728,10 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     statusPlanning: "Faoi Phleanáil",
     statusConfirmed: "Imeacht Deimhnithe",
     dateTBD: "Dáta le Socrú",
-    planningNotice: "Tá an t-imeacht seo faoi phleanáil faoi láthair. Foilseofar dátaí, bealach agus trealamh go luath.",
+    locationTBD: "Suíomh le Socrú",
+    untitledEvent: "Imeacht Scout",
+    noDescriptionAvailable: "Nuashonrófar sonraí an imeachta go luath.",
+    planningNotice: "Tá an t-imeacht seo á phleanáil faoi láthair. Foilseofar na dátaí deiridh, an bealach agus na riachtanais trealaimh go luath.",
     searchEventsPlaceholder: "Cúiligh imeacht nó áit...",
     noEventsFound: "Ní bhfuarthas aon imeachtaí.",
 
@@ -846,7 +858,7 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     event1Plan3: "12:30 - Comórtas Cócaireachta Coille (Bannock & Stobhach)",
     event1Plan4: "14:30 - Tógáil Foscadh Nádúrtha & Challenge Snaidhmeanna",
     event1Plan5: "16:30 - Athbhreithniú & Searmanas Deiridh",
-    event1Route: "Cruinniú ag Tailte Scoil Naomh Proinsias, Carraig Chocháin.",
+    event1Route: "Cruinniú ag Tailte Scoil Naomh Proinsias, Creagacha Dubha.",
     event1Gear1: "Scarf Scótaí & Éadaí Gníomhaíochta",
     event1Gear2: "Bróga Láidre Lasmuigh & Seaicéad Uiscedhíonach",
     event1Gear3: "Stán Cócaireachta Coille & Sceanra",
@@ -854,14 +866,14 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     event1Gear5: "Trealamh Garchabhrach Pearsanta",
     event1Notes: "Tabhair leat seanéadaí atá oiriúnach do théine agus cócaireacht.",
     event2Title: "Seoltóireacht & Regatta Chuan Dhún Dealgan",
-    event2Desc: "Regatta seoltóireachta bliantúil agus rásaí rámhaíochta ag Carraig Chocháin.",
-    event2Loc: "Promanáid Charraig Chocháin & Slipway Scótaí Mara",
-    event2Plan1: "09:30 - Cruinniú ag Slipway & Gléasadh Bád",
+    event2Desc: "Regatta seoltóireachta bliantúil agus rásaí rámhaíochta ag Creagacha Dubha.",
+    event2Loc: "Promanáid Chreagacha Dubha & Slipway Scótaí Mara",
+    event2Plan1: "09:30 - Cruinniú ag Slipway Chreagacha Dubha & Gléasadh Bád",
     event2Plan2: "10:30 - Briefing Sábháilteachta & Seiceáil Aimsire",
     event2Plan3: "11:00 - Rásaí Regatta & Cúrsa Seoltóireachta",
     event2Plan4: "14:00 - Rása Rámhaíochta & Dúshlán Nascleanúna",
     event2Plan5: "16:30 - Díchóimeáil & Bronnadh Corn",
-    event2Route: "Rochtain via Príomhsráid Charraig Chocháin.",
+    event2Route: "Rochtain via Príomhsráid Chreagacha Dubha.",
     event2Gear1: "Scarf Scótaí & Éide",
     event2Gear2: "Cabhair Snámhachta Deimhnithe (PFD)",
     event2Gear3: "Wetsuit nó Trealamh Seoltóireachta Uiscedhíonach",
@@ -870,12 +882,12 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     event2Notes: "Ag brath ar an aimsir.",
     event3Title: "Gabháil Bhliantúil Grúpa & Gradaim",
     event3Desc: "Fáilte roimh Biobhaire, Cúib agus Scótaí Mara nua isteach i 2ú Lú.",
-    event3Loc: "Scoil Naomh Proinsias, Carraig Chocháin, Co. Lú",
+    event3Loc: "Scoil Naomh Proinsias, Creagacha Dubha, Co. Lú",
     event3Plan1: "19:30 - Cigireacht & Asaimbliú Bratacha",
     event3Plan2: "20:00 - Gealltanas Scótaí & Searmanas Gabhála",
     event3Plan3: "20:30 - Bronnadh Suaitheantais Mhara & Slideshow",
     event3Plan4: "21:00 - Tae, Sólaistí & Oíche Shóisialta",
-    event3Route: "Scoil Naomh Proinsias, Carraig Chocháin, A91 NH0V.",
+    event3Route: "Scoil Naomh Proinsias, Creagacha Dubha, A91 NH0V.",
     event3Gear1: "Glan-Éide Scótaí Oifigiúil",
     event3Gear2: "Bróga Snasta / Glana",
     event3Gear3: "Scarf Scótaí le Woggle",
@@ -890,7 +902,7 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     secScouts: "Scótaí Mara",
     secVenturers: "Venturers",
 
-    contactTitle: "Teagmháil le 2ú Lú Scótaí Mara",
+    contactTitle: "Teagmháil le 2ú Lú Scótaí Mara Chreagacha Dubha",
     contactSubtitle: "Roinn linn faoi bhallraíocht, ceannaireacht dheonach, nó ceisteanna ginearálta.",
     contactNoticeSubtitle: "Is iad na haon bhealaí le teagmháil a dhéanamh linn ná go pearsanta ag cruinniú nó go díreach chuig an gCeannaire Frank trí ghlaoch nó WhatsApp.",
     contactFrankTitle: "Teagmháil Dhíreach leis an gCeannaire Frank",
@@ -913,7 +925,7 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     phoneLabel: "Fón",
     meetingTimesTitle: "Amanta Cruinnithe",
     formTitle: "Seol Teachtaireacht",
-    formSubtitleDesc: "Líon na sonraí thíos chun teagmháil a dhéanamh le ceannairí 2ú Lú.",
+    formSubtitleDesc: "Líon na sonraí thíos chun teagmháil a dhéanamh le ceannairí 2ú Lú Scótaí Mara Chreagacha Dubha.",
     formNameLabel: "D'Ainm",
     formNamePlaceholder: "m.sh., Siobhán Ní Chonaill",
     formEmailLabel: "Seoladh Ríomhphoist",
@@ -939,12 +951,12 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     optGeneral: "Inquiry Grúpa Ginearálta",
     denBadge: "Dún",
 
-    footerDesc: "Is ball de Scótaí Éireann é 2ú Lú Scótaí Mara Charraig Chocháin.",
+    footerDesc: "Is ball de Scótaí Éireann é 2ú Lú Scótaí Mara Chreagacha Dubha.",
     footerQuickLinks: "Naisc Thapa",
-    footerMeetingDen: "Scoil Naomh Proinsias, Carraig Chocháin, Co. Lú, A91 NH0V",
-    footerCopyright: "© 2026 2ú Lú Scótaí Mara Charraig Chocháin.",
+    footerMeetingDen: "Scoil Naomh Proinsias, Creagacha Dubha, Co. Lú, A91 NH0V",
+    footerCopyright: "© 2026 2ú Lú Scótaí Mara Chreagacha Dubha.",
     footerScoutingIreland: "Grúpa Ball de Scótaí Éireann",
-    footerLocation: "Carraig Chocháin, Co. Lú, Éire"
+    footerLocation: "Creagacha Dubha, Co. Lú, Éire"
   },
 
   es: {
@@ -970,6 +982,7 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     heroBadge: "Grupo Scout Marino de Blackrock y Dundalk Bay",
     heroCtaPrimary: "Explorar Eventos",
     heroCtaSecondary: "Líderes y Patrullas",
+    heroCtaContact: "Contactáctenos",
 
     aboutTitle: "Bienvenidos a Nuestro Den Scout Marino",
     aboutSubtitle: "Empoderando a la juventud a través de deportes náuticos, vida al aire libre y amistad.",
@@ -1031,6 +1044,9 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     statusPlanning: "En Proceso de Planificación",
     statusConfirmed: "Evento Confirmado",
     dateTBD: "Fecha por Determinar",
+    locationTBD: "Ubicación por Determinar",
+    untitledEvent: "Evento Scout",
+    noDescriptionAvailable: "Los detalles de este evento se actualizarán próximamente.",
     planningNotice: "Este evento se encuentra actualmente en proceso de planificación. Las fechas definitivas, la ruta y el equipo requerido se publicarán próximamente.",
     searchEventsPlaceholder: "Buscar evento o ubicación...",
     noEventsFound: "No se encontraron eventos con los criterios seleccionados.",
@@ -1282,6 +1298,7 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     heroBadge: "Morska Drużyna Harcerska z Blackrock",
     heroCtaPrimary: "Zobacz Wydarzenia",
     heroCtaSecondary: "Nasi Liderzy",
+    heroCtaContact: "Skontaktuj się",
 
     aboutTitle: "Witaj w Naszym Harcerskim Denie Morskim",
     aboutSubtitle: "Rozwój młodzieży poprzez sporty wodne, obozownictwo i przyjaźń na całe życie.",
@@ -1343,7 +1360,10 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     statusPlanning: "W Fazie Planowania",
     statusConfirmed: "Wydarzenie Potwierdzone",
     dateTBD: "Data do Uzgodnienia",
-    planningNotice: "To wydarzenie jest obecnie w fazie planowania. Ostateczne daty, trasa i sprzęt zostaną opublikowane wkrótce.",
+    locationTBD: "Lokalizacja do Uzgodnienia",
+    untitledEvent: "Wydarzenie Harcerskie",
+    noDescriptionAvailable: "Szczegóły wydarzenia zostaną wkrótce zaktualizowane.",
+    planningNotice: "To wydarzenie jest obecnie w fazie planowania. Ostateczne daty, trasa i wymagany sprzęt zostaną opublikowane wkrótce.",
     searchEventsPlaceholder: "Szukaj wydarzenia lub miejsca...",
     noEventsFound: "Nie znaleziono wydarzeń spełniających kryteria.",
 
@@ -1594,6 +1614,7 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     heroBadge: "Blackrock & Dundalk Bay Seepfadfinder",
     heroCtaPrimary: "Events Erkunden",
     heroCtaSecondary: "Unsere Leiter",
+    heroCtaContact: "Kontaktieren",
 
     aboutTitle: "Willkommen in Unserem Seepfadfinder-Den",
     aboutSubtitle: "Jugendförderung durch Wassersport, Camping und lebenslange Freundschaft.",
@@ -1655,6 +1676,9 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     statusPlanning: "In Planung",
     statusConfirmed: "Bestätigtes Event",
     dateTBD: "Datum Noch Offen",
+    locationTBD: "Ort Noch Offen",
+    untitledEvent: "Pfadfinderveranstaltung",
+    noDescriptionAvailable: "Details zu dieser Veranstaltung werden in Kürze aktualisiert.",
     planningNotice: "Dieses Event befindet sich derzeit in der Planung. Endgültige Termine, Route und Ausrüstung werden in Kürze veröffentlicht.",
     searchEventsPlaceholder: "Event oder Ort suchen...",
     noEventsFound: "Keine Veranstaltungen für diese Kriterien gefunden.",
@@ -1906,6 +1930,7 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     heroBadge: "Морские скауты Блэкрока и Дандолка",
     heroCtaPrimary: "Смотреть события",
     heroCtaSecondary: "Наши руководители",
+    heroCtaContact: "Связаться с нами",
 
     aboutTitle: "Добро пожаловать в наш Морской Скаутский Ден",
     aboutSubtitle: "Воспитание молодёжи через водный спорт, походы и крепкую дружбу.",
@@ -1967,6 +1992,9 @@ export const translations: Record<SupportedLanguage, TranslationDictionary> = {
     statusPlanning: "В процессе планирования",
     statusConfirmed: "Подтвержденное событие",
     dateTBD: "Дата уточняется",
+    locationTBD: "Место уточняется",
+    untitledEvent: "Скаутское мероприятие",
+    noDescriptionAvailable: "Подробности мероприятия будут обновлены в ближайшее время.",
     planningNotice: "Это мероприятие находится в стадии планирования. Точные даты, маршрут и список снаряжения будут опубликованы в ближайшее время.",
     searchEventsPlaceholder: "Поиск события или места...",
     noEventsFound: "Событий по заданным критериям не найдено.",

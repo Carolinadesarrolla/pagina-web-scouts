@@ -57,45 +57,54 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({ event, onClo
   const isExpedition = event.id === "expedition-dundalk-bay-2026";
   const isInvestiture = event.id === "annual-investiture-2026";
 
-  const translatedTitle = isBackwoods ? t("event1Title") : isExpedition ? t("event2Title") : isInvestiture ? t("event3Title") : event.titleKey;
-  const translatedDesc = isBackwoods ? t("event1Desc") : isExpedition ? t("event2Desc") : isInvestiture ? t("event3Desc") : event.descriptionKey;
-  const translatedLoc = isBackwoods ? t("event1Loc") : isExpedition ? t("event2Loc") : isInvestiture ? t("event3Loc") : event.location;
-  const translatedType = event.type === "camp" ? t("typeCamp") : event.type === "water" ? t("typeWater") : event.type === "ceremony" ? t("typeCeremony") : event.type;
+  const resolveTranslation = (val?: string | null, fallbackKey = ""): string => {
+    if (!val || val.trim() === "") return fallbackKey ? t(fallbackKey) : "";
+    const res = t(val);
+    if (res && res !== val && res.trim() !== "") return res;
+    return val;
+  };
+
+  const translatedTitle = isBackwoods ? t("event1Title") : isExpedition ? t("event2Title") : isInvestiture ? t("event3Title") : resolveTranslation(event.titleKey, "untitledEvent");
+  const translatedDesc = isBackwoods ? t("event1Desc") : isExpedition ? t("event2Desc") : isInvestiture ? t("event3Desc") : resolveTranslation(event.descriptionKey, "noDescriptionAvailable");
+  const translatedLoc = isBackwoods ? t("event1Loc") : isExpedition ? t("event2Loc") : isInvestiture ? t("event3Loc") : resolveTranslation(event.location, "locationTBD");
+  const translatedType = event.type === "camp" ? t("typeCamp") : event.type === "water" ? t("typeWater") : event.type === "ceremony" ? t("typeCeremony") : resolveTranslation(event.type, "filterAll");
 
   const translatedSections = isBackwoods || isExpedition ? [t("secScouts"), t("secVenturers")] :
-                             isInvestiture ? [t("secBeavers"), t("secCubs"), t("secScouts"), t("secVenturers")] :
-                             (event.sections || []);
+    isInvestiture ? [t("secBeavers"), t("secCubs"), t("secScouts"), t("secVenturers")] :
+      (event.sections || []).map(s => resolveTranslation(s, s));
 
-  const translatedPlan = isBackwoods ? [t("event1Plan1"), t("event1Plan2"), t("event1Plan3"), t("event1Plan4"), t("event1Plan5")] :
-                         isExpedition ? [t("event2Plan1"), t("event2Plan2"), t("event2Plan3"), t("event2Plan4"), t("event2Plan5")] :
-                         isInvestiture ? [t("event3Plan1"), t("event3Plan2"), t("event3Plan3"), t("event3Plan4")] :
-                         event.plan;
+  const rawPlan = isBackwoods ? [t("event1Plan1"), t("event1Plan2"), t("event1Plan3"), t("event1Plan4"), t("event1Plan5")] :
+    isExpedition ? [t("event2Plan1"), t("event2Plan2"), t("event2Plan3"), t("event2Plan4"), t("event2Plan5")] :
+      isInvestiture ? [t("event3Plan1"), t("event3Plan2"), t("event3Plan3"), t("event3Plan4")] :
+        event.plan;
+  const translatedPlan = (rawPlan || []).map(p => resolveTranslation(p, p));
 
-  const translatedRoute = isBackwoods ? t("event1Route") : isExpedition ? t("event2Route") : isInvestiture ? t("event3Route") : event.route;
+  const translatedRoute = isBackwoods ? t("event1Route") : isExpedition ? t("event2Route") : isInvestiture ? t("event3Route") : resolveTranslation(event.route, "");
 
-  const translatedGear = isBackwoods ? [t("event1Gear1"), t("event1Gear2"), t("event1Gear3"), t("event1Gear4"), t("event1Gear5")] :
-                         isExpedition ? [t("event2Gear1"), t("event2Gear2"), t("event2Gear3"), t("event2Gear4"), t("event2Gear5")] :
-                         isInvestiture ? [t("event3Gear1"), t("event3Gear2"), t("event3Gear3")] :
-                         event.gearList;
+  const rawGear = isBackwoods ? [t("event1Gear1"), t("event1Gear2"), t("event1Gear3"), t("event1Gear4"), t("event1Gear5")] :
+    isExpedition ? [t("event2Gear1"), t("event2Gear2"), t("event2Gear3"), t("event2Gear4"), t("event2Gear5")] :
+      isInvestiture ? [t("event3Gear1"), t("event3Gear2"), t("event3Gear3")] :
+        event.gearList;
+  const translatedGear = (rawGear || []).map(g => resolveTranslation(g, g));
 
-  const translatedContact = isBackwoods || isExpedition ? t("eventContactSkipperFrank") : isInvestiture ? t("eventContactFiachra") : event.contactPerson;
-  const translatedNotes = isBackwoods ? t("event1Notes") : isExpedition ? t("event2Notes") : isInvestiture ? t("event3Notes") : event.notes;
+  const translatedContact = isBackwoods || isExpedition ? t("eventContactSkipperFrank") : isInvestiture ? t("eventContactFiachra") : resolveTranslation(event.contactPerson, "TBD");
+  const translatedNotes = isBackwoods ? t("event1Notes") : isExpedition ? t("event2Notes") : isInvestiture ? t("event3Notes") : resolveTranslation(event.notes, "");
 
   const formattedDate = !isPlanningMode && event.startDate
     ? new Date(event.startDate).toLocaleDateString(activeLocale, {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-      })
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    })
     : t("dateTBD");
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in overflow-y-auto">
       <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-[var(--md-shape-xl)] bg-[var(--surface-container-low)] border border-[var(--outline-variant)] shadow-2xl p-6 sm:p-8 my-8 text-[var(--on-surface)]">
-        
+
         {/* Close Button */}
         <button
           onClick={onClose}

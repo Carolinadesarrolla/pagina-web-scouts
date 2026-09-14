@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { siteConfig } from "@/config/siteConfig";
 import eventsData from "@/data/events.json";
 import { EventCountdown } from "@/components/EventCountdown";
+import { EventCard } from "@/components/EventCard";
 import { EventDetailModal, EventItem } from "@/components/EventDetailModal";
 import {
   Anchor,
@@ -17,32 +18,75 @@ import {
   Calendar,
   ArrowRight,
   Check,
-  MapPin
+  MapPin,
+  Mail
 } from "@/components/Icons";
 
 export default function HomePage() {
   const { t } = useLanguage();
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
+  const [scrollY, setScrollY] = useState(0);
 
-  // Find next upcoming event
-  const nextEvent = (eventsData as EventItem[])[0];
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Events list
+  const events = eventsData as EventItem[];
+  const nextEvent = events[0];
+
+  const getNextEventTitle = (ev?: EventItem) => {
+    if (!ev) return t("untitledEvent");
+    if (ev.id === "backwoods-day-2026") return t("event1Title");
+    if (ev.id === "expedition-dundalk-bay-2026") return t("event2Title");
+    if (ev.id === "annual-investiture-2026") return t("event3Title");
+    return ev.titleKey ? t(ev.titleKey) : t("untitledEvent");
+  };
+
+  const getNextEventLoc = (ev?: EventItem) => {
+    if (!ev) return t("locationTBD");
+    if (ev.id === "backwoods-day-2026") return t("event1Loc");
+    if (ev.id === "expedition-dundalk-bay-2026") return t("event2Loc");
+    if (ev.id === "annual-investiture-2026") return t("event3Loc");
+    return ev.location ? t(ev.location) : t("locationTBD");
+  };
 
   return (
     <div className="flex flex-col gap-16 pb-20">
 
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SECTION WITH PARALLAX */}
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden border-b border-[var(--outline-variant)]">
-        {/* Hero Background Image */}
-        <Image
-          src="/hero.jpeg"
-          alt="Blackrock Sea Scouts Watersports"
-          fill
-          sizes="100vw"
-          className="object-cover object-center scale-105"
-          priority
-        />
+        {/* Hero Background Image with Parallax Effect */}
+        <div
+          className="absolute inset-0 w-full h-[125%] -top-[12%] pointer-events-none will-change-transform"
+          style={{
+            transform: `translate3d(0, ${scrollY * 0.4}px, 0)`,
+          }}
+        >
+          <Image
+            src="/hero.jpeg"
+            alt="Blackrock Sea Scouts Watersports"
+            fill
+            sizes="100vw"
+            className="object-cover object-center scale-110"
+            priority
+          />
+        </div>
+
         {/* Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface)] via-black/60 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface)] via-black/60 to-black/40 pointer-events-none" />
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white space-y-6 my-16">
@@ -59,12 +103,26 @@ export default function HomePage() {
             {t("heroSubtitle")}
           </p>
 
+          {/* CTA Buttons */}
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-            <Link href="/events" className="m3-btn-primary text-base px-8 py-4 shadow-xl">
+            <Link
+              href="/contact"
+              className="m3-btn-primary text-base px-8 py-4 shadow-2xl bg-[var(--primary)] text-[var(--on-primary)] hover:scale-105 transition-all flex items-center gap-2 font-bold ring-4 ring-[var(--primary)]/30"
+            >
+              <Mail size={20} />
+              <span>{t("heroCtaContact")}</span>
+            </Link>
+            <Link
+              href="/events"
+              className="m3-btn-secondary text-base px-8 py-4 shadow-lg backdrop-blur-md bg-white/90 text-zinc-900 hover:bg-white hover:scale-105 transition-all flex items-center gap-2 font-semibold"
+            >
               <Calendar size={20} />
               <span>{t("heroCtaPrimary")}</span>
             </Link>
-            <Link href="/leaders" className="m3-btn-secondary text-base px-8 py-4 shadow-lg backdrop-blur-sm bg-white/90 text-zinc-900 hover:bg-white">
+            <Link
+              href="/leaders"
+              className="m3-btn-secondary text-base px-8 py-4 shadow-lg backdrop-blur-md bg-black/40 text-white border border-white/30 hover:bg-black/60 hover:scale-105 transition-all flex items-center gap-2 font-semibold"
+            >
               <Users size={20} />
               <span>{t("heroCtaSecondary")}</span>
             </Link>
@@ -74,29 +132,25 @@ export default function HomePage() {
 
       {/* 2. HIGHLIGHT EVENT COUNTDOWN BAR */}
       {nextEvent && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full -mt-24 z-20">
-          <div className="m3-card p-6 sm:p-8 bg-[var(--surface-container-high)]/95 backdrop-blur-xl border border-[var(--outline-variant)] shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-2 text-center md:text-left">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full -mt-10 sm:-mt-20 lg:-mt-24 z-20">
+          <div className="m3-card p-5 sm:p-8 bg-[var(--surface-container-high)]/95 backdrop-blur-xl border border-[var(--outline-variant)] shadow-2xl flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6">
+            <div className="space-y-2 text-center lg:text-left min-w-0 flex-1">
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--primary)]">
-                <Compass size={16} />
+                <Compass size={16} className="shrink-0" />
                 <span>{t("nextEventTitle")}</span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-black text-[var(--on-surface)]">
-                {nextEvent.id === "backwoods-day-2026" ? t("event1Title") :
-                  nextEvent.id === "expedition-dundalk-bay-2026" ? t("event2Title") :
-                    nextEvent.id === "annual-investiture-2026" ? t("event3Title") : nextEvent.titleKey}
+              <h2 className="text-xl sm:text-2xl font-black text-[var(--on-surface)] truncate">
+                {getNextEventTitle(nextEvent)}
               </h2>
-              <p className="text-xs text-[var(--on-surface-variant)] flex items-center justify-center md:justify-start gap-1.5">
-                <MapPin size={14} className="text-[var(--primary)]" />
-                <span>
-                  {nextEvent.id === "backwoods-day-2026" ? t("event1Loc") :
-                    nextEvent.id === "expedition-dundalk-bay-2026" ? t("event2Loc") :
-                      nextEvent.id === "annual-investiture-2026" ? t("event3Loc") : nextEvent.location}
+              <p className="text-xs text-[var(--on-surface-variant)] flex items-center justify-center lg:justify-start gap-1.5 font-medium">
+                <MapPin size={14} className="text-[var(--primary)] shrink-0" />
+                <span className="line-clamp-1">
+                  {getNextEventLoc(nextEvent)}
                 </span>
               </p>
             </div>
 
-            <div className="w-full md:w-auto">
+            <div className="w-full lg:w-auto shrink-0">
               <EventCountdown
                 startDateIso={nextEvent.startDate}
                 isPlanning={nextEvent.status === "planning" || !nextEvent.startDate || isNaN(Date.parse(nextEvent.startDate))}
@@ -106,7 +160,7 @@ export default function HomePage() {
 
             <button
               onClick={() => setSelectedEvent(nextEvent)}
-              className="m3-btn-primary text-sm whitespace-nowrap"
+              className="m3-btn-primary text-sm whitespace-nowrap w-full lg:w-auto justify-center font-bold"
             >
               <span>{t("eventDetailsBtn")}</span>
               <ArrowRight size={16} />
@@ -299,6 +353,38 @@ export default function HomePage() {
               {t("venturersMeetingTime")}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* UPCOMING EVENTS GRID SHOWCASE */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[var(--outline-variant)]/60 pb-4">
+          <div className="space-y-1">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--primary)]">
+              <Calendar size={16} />
+              <span>{t("navEvents")}</span>
+            </div>
+            <h2 className="text-3xl font-extrabold text-[var(--on-surface)]">
+              {t("nextEventSubtitle")}
+            </h2>
+          </div>
+          <Link
+            href="/events"
+            className="m3-btn-secondary text-xs sm:text-sm font-semibold whitespace-nowrap self-start sm:self-auto flex items-center gap-2"
+          >
+            <span>{t("viewAllEvents")}</span>
+            <ArrowRight size={16} />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {events.slice(0, 3).map((ev) => (
+            <EventCard
+              key={ev.id}
+              event={ev}
+              onSelectEvent={(selected) => setSelectedEvent(selected)}
+            />
+          ))}
         </div>
       </section>
 
